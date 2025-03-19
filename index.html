@@ -117,15 +117,34 @@
                     <div class="form-group">
                         <label>AI Model</label>
                         <div class="custom-select">
-                            <div class="custom-select-trigger" id="modelSelectTrigger">Select a model</div>
+                            <div class="custom-select-trigger" id="modelSelectTrigger">MythoMax-L2-13B</div>
                             <div class="custom-options">
-                                <div class="custom-option" data-value="google/palm-2-chat-bison">PaLM 2 Chat-Bison</div>
-                                <div class="custom-option" data-value="anthropic/claude-2">Claude 2</div>
-                                <div class="custom-option" data-value="meta-llama/llama-2-70b-chat">Llama 2 70B</div>
-                                <div class="custom-option" data-value="openai/gpt-3.5-turbo">GPT-3.5 Turbo</div>
-                                <div class="custom-option" data-value="openai/gpt-4">GPT-4</div>
+                                <div class="custom-option selected" data-value="gryphe/mythomax-l2-13b:free">
+                                    <span>MythoMax-L2-13B</span>
+                                    <span class="model-indicator free"></span>
+                                </div>
+                                <div class="custom-option" data-value="google/palm-2-chat-bison">
+                                    <span>PaLM 2 Chat-Bison</span>
+                                    <span class="model-indicator paid"></span>
+                                </div>
+                                <div class="custom-option" data-value="anthropic/claude-2">
+                                    <span>Claude 2</span>
+                                    <span class="model-indicator paid"></span>
+                                </div>
+                                <div class="custom-option" data-value="meta-llama/llama-2-70b-chat">
+                                    <span>Llama 2 70B</span>
+                                    <span class="model-indicator paid"></span>
+                                </div>
+                                <div class="custom-option" data-value="openai/gpt-3.5-turbo">
+                                    <span>GPT-3.5 Turbo</span>
+                                    <span class="model-indicator paid"></span>
+                                </div>
+                                <div class="custom-option" data-value="openai/gpt-4">
+                                    <span>GPT-4</span>
+                                    <span class="model-indicator paid"></span>
+                                </div>
                             </div>
-                            <input type="hidden" id="modelSelect" name="modelSelect" required>
+                            <input type="hidden" id="modelSelect" name="modelSelect" value="gryphe/mythomax-l2-13b:free" required>
                         </div>
                     </div>
                 </div>

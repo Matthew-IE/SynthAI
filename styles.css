@@ -559,6 +559,16 @@ body {
     color: white;
     cursor: pointer;
     transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding-right: 16px; /* Added padding for consistent spacing */
+}
+
+/* Remove the paid emoji selector */
+.custom-option.paid::after {
+    content: none;
 }
 
 .custom-option:hover {
@@ -569,6 +579,24 @@ body {
 .custom-option.selected {
     background: rgba(0, 243, 255, 0.2);
     color: var(--neon-blue);
+}
+
+.model-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-left: auto; /* Push indicator to the right */
+}
+
+.model-indicator.free {
+    background: #4CAF50;
+    box-shadow: 0 0 8px #4CAF50;
+}
+
+.model-indicator.paid {
+    background: #FFD700;
+    box-shadow: 0 0 8px #FFD700;
 }
 
 /* No Chat Selected State */
