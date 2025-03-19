@@ -169,7 +169,9 @@ Tell me something real. Something that matters to you. 🖤`;
         currentChatId = chatId;
         const chat = chats.find(c => c.id === chatId);
         if (chat) {
+            // Update both the avatar and name when switching chats
             document.querySelector('.ai-image').src = chat.bot.avatar;
+            document.querySelector('#aiName').textContent = chat.bot.name;
             showChatInterface();
             messageArea.innerHTML = '';
             chat.messages.forEach(msg => {
@@ -268,6 +270,25 @@ Tell me something real. Something that matters to you. 🖤`;
                 avatar: card.querySelector('img').src
             };
             createNewChat(botData);
+        });
+    });
+
+    // Bot selection handling
+    document.querySelectorAll('.bot-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const botName = card.querySelector('h3').textContent;
+            const botImage = card.querySelector('img').src;
+            
+            // Update the AI avatar and name
+            document.querySelector('.ai-image').src = botImage;
+            document.querySelector('#aiName').textContent = botName;
+            
+            // Hide the bot selection modal and show chat interface
+            document.getElementById('botSelectionModal').classList.remove('active');
+            document.getElementById('noChatSelected').style.display = 'none';
+            document.getElementById('chatInterface').style.display = 'flex';
+            
+            // Other existing bot selection logic...
         });
     });
 

@@ -57,6 +57,7 @@ body {
 
 .ai-avatar {
     flex: 0 0 150px;
+    text-align: center;
 }
 
 .hologram-head {
@@ -75,6 +76,32 @@ body {
     height: 100%;
     object-fit: cover;
     opacity: 0.9;
+}
+
+.ai-name {
+    margin-top: 1rem;
+    color: var(--neon-blue);
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.online-status {
+    margin-top: 0.5rem;
+    color: #4CAF50;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.online-dot {
+    width: 8px;
+    height: 8px;
+    background: #4CAF50;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #4CAF50;
+    display: inline-block;
 }
 
 .chat-box {
