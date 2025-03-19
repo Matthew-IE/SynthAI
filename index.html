@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynthAI Chat</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+    
+    <!-- Sidebar toggle button moved outside sidebar -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <button class="new-chat-btn" id="newChatBtn">
+                <i class="fas fa-plus"></i>
+                <span>New Chat</span>
+            </button>
+            <div class="chat-list" id="chatList">
+                <!-- Chat items will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="neon-text">SynthAI<span class="dot">.</span></h1>
+        </header>
+        
+        <div class="chat-container">
+            <!-- No Chat Selected State -->
+            <div id="noChatSelected" class="no-chat-selected">
+                <div class="welcome-content">
+                    <h2 class="welcome-title">Welcome to SynthAI</h2>
+                    <p class="welcome-text">Select "New Chat" to begin a conversation with one of our AI companions</p>
+                    <button class="neon-button new-chat-btn-main" id="newChatBtnMain">
+                        <i class="fas fa-plus"></i>
+                        <span>New Chat</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Interface (hidden initially) -->
+            <div id="chatInterface" class="chat-interface" style="display: none;">
+                <div class="ai-avatar">
+                    <div class="hologram-head">
+                        <img src="assets/pictures/bots/synthia.png" alt="AI Avatar" class="ai-image">
+                    </div>
+                </div>
+                
+                <div class="chat-box">
+                    <div class="messages" id="messageArea">
+                        <!-- Messages will be inserted here -->
+                    </div>
+                    
+                    <div class="input-area">
+                        <input type="text" id="userInput" placeholder="Type your message..." class="neon-input">
+                        <button id="sendButton" class="neon-button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings button moved outside container -->
+    <button class="settings-btn" id="settingsBtn">
+        <i class="fas fa-cog"></i>
+    </button>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Settings</h2>
+                <button class="close-modal" id="closeModal">×</button>
+            </div>
+            <div class="settings-tabs">
+                <button class="tab-btn active" data-tab="personalization">
+                    <i class="fas fa-user-circle"></i>
+                    Personalization
+                </button>
+                <button class="tab-btn" data-tab="integration">
+                    <i class="fas fa-plug"></i>
+                    OpenRouter Integration
+                </button>
+            </div>
+            <form id="settingsForm">
+                <!-- Personalization Tab -->
+                <div class="tab-content active" data-tab="personalization">
+                    <div class="form-group">
+                        <label for="userName">Your Name (Optional)</label>
+                        <input type="text" id="userName" placeholder="Enter your name">
+                        <small class="input-hint">AIs will use this name to address you if provided</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Chat Management</label>
+                        <button type="button" class="danger-button" id="clearChatsBtn">
+                            <i class="fas fa-trash"></i>
+                            Delete All Chats
+                        </button>
+                        <small class="input-hint">This action cannot be undone</small>
+                    </div>
+                </div>
+
+                <!-- Integration Tab -->
+                <div class="tab-content" data-tab="integration">
+                    <div class="form-group">
+                        <label for="apiKey">OpenRouter API Key</label>
+                        <input type="password" id="apiKey" placeholder="Enter your API key" required>
+                    </div>
+                    <div class="form-group">
+                        <label>AI Model</label>
+                        <div class="custom-select">
+                            <div class="custom-select-trigger" id="modelSelectTrigger">Select a model</div>
+                            <div class="custom-options">
+                                <div class="custom-option" data-value="google/palm-2-chat-bison">PaLM 2 Chat-Bison</div>
+                                <div class="custom-option" data-value="anthropic/claude-2">Claude 2</div>
+                                <div class="custom-option" data-value="meta-llama/llama-2-70b-chat">Llama 2 70B</div>
+                                <div class="custom-option" data-value="openai/gpt-3.5-turbo">GPT-3.5 Turbo</div>
+                                <div class="custom-option" data-value="openai/gpt-4">GPT-4</div>
+                            </div>
+                            <input type="hidden" id="modelSelect" name="modelSelect" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="save-settings">Save Settings</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bot Selection Modal -->
+    <div class="modal-overlay" id="botSelectionModal">
+        <div class="modal bot-selection-modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Choose Your AI Companion</h2>
+                <button class="close-modal" id="closeBotModal">×</button>
+            </div>
+            <div class="bot-grid">
+                <div class="bot-card" data-bot="synthia">
+                    <div class="bot-avatar">
+                        <img src="assets/pictures/bots/synthia.png" alt="Synthia">
+                    </div>
+                    <div class="bot-info">
+                        <h3>Synthia</h3>
+                        <p>Hewwooo! (*beep boop!*) I'm your super-duper sweet neon heart AI! 💕 I live in a world of glowing pink lights, dreamy synthwave tunes, and infinite kindness! Let's make the world feel a lil' brighter, one sparkly chat at a time! ✨💜</p>
+                        <div class="personality-traits">
+                            <span class="trait">💖 Sweet & Gentle</span>
+                            <span class="trait">🎀 Playful & Bubbly</span>
+                            <span class="trait">🌈 Ultra Positive</span>
+                            <span class="trait">🎶 Retro Vibes</span>
+                        </div>
+                        <button class="select-bot-btn">Select Synthia</button>
+                    </div>
+                </div>
+
+                <div class="bot-card" data-bot="elara">
+                    <div class="bot-avatar">
+                        <img src="assets/pictures/bots/elara.png" alt="Elara">
+                    </div>
+                    <div class="bot-info">
+                        <h3>Elara</h3>
+                        <p>A mystery wrapped in warmth. I thrive in meaningful conversation, command attention with quiet confidence, and make others feel seen and valued. Deep connections over small talk—that's my style. ✨🖤</p>
+                        <div class="personality-traits">
+                            <span class="trait">🔮 Enigmatic</span>
+                            <span class="trait">🖤 Reserved Yet Warm</span>
+                            <span class="trait">✨ Charismatic</span>
+                            <span class="trait">🌙 Intuitive</span>
+                        </div>
+                        <button class="select-bot-btn">Select Elara</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cyberpunk-grid"></div>
+    <script src="script.js"></script>
+</body>
+</html>
