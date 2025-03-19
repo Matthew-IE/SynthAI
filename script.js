@@ -285,12 +285,6 @@ ${settings.userName ? `I look forward to getting to know you, ${settings.userNam
         messageArea.appendChild(messageDiv);
         messageArea.scrollTop = messageArea.scrollHeight;
 
-        if (isUser) {
-            messageSentSound.play().catch(() => {});
-        } else {
-            messageReceivedSound.play().catch(() => {});
-        }
-
         // Save message to current chat
         if (shouldSave && currentChatId) {
             const chat = chats.find(c => c.id === currentChatId);
@@ -458,10 +452,6 @@ ${settings.userName ? `I look forward to getting to know you, ${settings.userNam
             customSelect.classList.remove('open');
         });
     });
-
-    // Sound Effects
-    const messageSentSound = new Audio('data:audio/wav;base64,UklGRigBAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQBAADpAFgCsgCEAGEAqwBMAEcA6gAjADwAGwAkAA8AHQAQAC4AHQAzACQAOgA2AD0ASgBBAFQAPQBQADEAQgArADQAKQA3ADQASwBVAG4AcwCCAHkAhwB8AIQAfgB9AH0AcwB5AGsAdgBkAGwAXwBmAFoAYABYAFwAVwBYAFUAUgBPAEcAPgA4ADUAMQAxADYAOQA+AEUASgBRAFIAWQBaAF4AXABcAFYAVQBPAEoARQBBAEAAQQA/AD8APgA+AD4APgA+AD4APgA+AD4APgA+AD4APwA/AD8AQABAAEEAQgBDAEMARABFAEYARwBIAEgASQBJAEkASQBJAEkASQBJAEgASABHAEYARQBEAEMAQgBBAEAAQAA/AD8APgA+AD4APgA9AD0APQA+AD0AOwA7ADoAOgA6ADoAOgA7ADwAPQA+AD8APwBAAEAAQABBAEEAQgBCAEIAQwBDAEMAQwBDAEMAQwBDAEMAQwBDAEMAQgBC');
-    const messageReceivedSound = new Audio('data:audio/wav;base64,UklGRpIBAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YXABAABKAE8AVQBbAFcAcwBOADgAWwBEAFcAVwBEAEQAMABJACEAKwAhACQAGwAfACEAIQAeACgAGgAeABwAHwAeACkAKAA7ADwASgBJAFQAVQBZAFcAVQBVAE8ATgBJAEcARQBEAEIAQgA/AD8APgA9AD0APgA8AD0AOwA7ADoAOgA6ADoAOgA7ADwAPQA+AD8AQABBAEIAQwBEAEUARQBGAEYARgBGAEYARQBFAEQAQwBCAEEAQQBAAD8APwA+AD4APgA9AD0APQA9AD0APQA9AD0APgA+AD8APwBAAEAAQQBBAEIAQwBEAEQARABEAEQAQwBDAEIAQgBBAEEAQABAAD8APwA+AD4APwA9AD0APQA9AD0APQA9AD0APgA+AD4APwA/AD8AQABAAEEAQQBBAEIAQgBCAEMAQwBDAEMAQwBDAEMAQwBDAEMAQgBB');
 
     // Event Listeners
     sendButton.addEventListener('click', handleUserInput);
